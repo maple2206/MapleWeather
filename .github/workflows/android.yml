@@ -37,8 +37,7 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      # GitHub-hosted Ubuntu runners include Android command-line tools.
-       - name: Install Android SDK packages
+      - name: Install Android SDK packages
         shell: bash
         run: |
           SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
@@ -55,6 +54,7 @@ jobs:
 
           echo "ANDROID_HOME=$SDK_ROOT" >> "$GITHUB_ENV"
           "$SDKMANAGER" "platforms;android-35" "build-tools;34.0.0"
+
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v5
         with:
